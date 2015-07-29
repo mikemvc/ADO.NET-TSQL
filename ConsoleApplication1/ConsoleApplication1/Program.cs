@@ -83,13 +83,24 @@ namespace ConsoleApplication1
             #endregion
 
             #region FULL OUTER JOIN without both sides
-            cmd.CommandText = @"SELECT * FROM Customers C 
-                            FULL OUTER JOIN Orders O ON O.CustomerID = C.CustomerID
-                            WHERE O.CustomerID IS NULL OR C.CustomerID IS NULL";
-            var result7 = cmd.ExecuteReader();
-            while (result7.Read())
+//            cmd.CommandText = @"SELECT * FROM Customers C 
+//                            FULL OUTER JOIN Orders O ON O.CustomerID = C.CustomerID
+//                            WHERE O.CustomerID IS NULL OR C.CustomerID IS NULL";
+//            var result7 = cmd.ExecuteReader();
+//            while (result7.Read())
+//            {
+//                Console.WriteLine(result7[0] + " " + result7[1] + " " + result7[2]);
+//            }
+            #endregion
+
+            #region SELF JOIN
+            cmd.CommandText = @"SELECT E.EmployeeID,E.LastName + ',' + E.FirstName AS Name,
+                            EM.FirstName AS MangerName FROM Employees E
+                            LEFT OUTER JOIN Employees EM ON E.ReportsTo = EM.EmployeeID";
+            var result8 = cmd.ExecuteReader();
+            while (result8.Read())
             {
-                Console.WriteLine(result7[0] + " " + result7[1] + " " + result7[2]);
+                Console.WriteLine(result8[0] + " " + result8[1] + " " + result8[2]);
             }
             #endregion
             #endregion
