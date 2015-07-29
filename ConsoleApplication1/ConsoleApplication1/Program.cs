@@ -51,14 +51,24 @@ namespace ConsoleApplication1
             #endregion
 
             #region INNER JOIN
-            cmd.CommandText = @"SELECT E.LastName + ',' + E.FirstName AS FullName,
-                    O.OrderID, O.OrderDate 
-                    FROM Employees E
-                    JOIN Orders O ON O.EmployeeID = E.EmployeeID";
-            var result3 = cmd.ExecuteReader();
-            while (result3.Read())
+//            cmd.CommandText = @"SELECT E.LastName + ',' + E.FirstName AS FullName,
+//                    O.OrderID, O.OrderDate 
+//                    FROM Employees E
+//                    JOIN Orders O ON O.EmployeeID = E.EmployeeID";
+//            var result4 = cmd.ExecuteReader();
+//            while (result4.Read())
+//            {
+//                Console.WriteLine(result3[0] + " " + result3[1] + " " + result3[2]);
+//            }
+            #endregion
+
+            #region LEFT OUTER JOIN
+            cmd.CommandText = @"SELECT * FROM Customers C 
+                            LEFT OUTER JOIN Orders O ON O.CustomerID = C.CustomerID";
+            var result5 = cmd.ExecuteReader();            
+            while (result5.Read())
             {
-                Console.WriteLine(result3[0] + " " + result3[1] + " " + result3[2]);
+                Console.WriteLine(result5[0] + " " + result5[1] + " " + result5[2]);
             }
             #endregion
             #endregion
