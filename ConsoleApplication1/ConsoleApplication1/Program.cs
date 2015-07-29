@@ -26,17 +26,29 @@ namespace ConsoleApplication1
             //    Console.WriteLine(result1[0]);
             //}
             #endregion
+            
             #region 雙欄位合併
-            cmd.CommandText = @"SELECT TOP 1000 EmployeeID, 
-                CONVERT(VARCHAR,EmployeeID) + '/' 
-                + LastName + ',' + FirstName FROM Employees";
-            var result2 = cmd.ExecuteReader();
-            while(result2.Read())
-            {
-                Console.WriteLine(result2[1]);
-            }
+//            cmd.CommandText = @"SELECT TOP 1000 EmployeeID, 
+//                CONVERT(VARCHAR,EmployeeID) + '/' 
+//                + LastName + ',' + FirstName FROM Employees";
+//            var result2 = cmd.ExecuteReader();
+//            while(result2.Read())
+//            {
+//                Console.WriteLine(result2[1]);
+//            }
             #endregion
 
+            #region JOIN的簡寫
+            cmd.CommandText = @"SELECT E.LastName + ',' + E.FirstName AS FullName,
+                    O.OrderID, O.OrderDate 
+                    FROM Employees E, Orders O
+                    WHERE O.EmployeeID = E.EmployeeID";
+            var result3 = cmd.ExecuteReader();
+            while(result3.Read())
+            {
+                Console.WriteLine(result3[0] + " " + result3[1] + " " + result3[2]);
+            }
+            #endregion
             #endregion
 
             conn.Close();
