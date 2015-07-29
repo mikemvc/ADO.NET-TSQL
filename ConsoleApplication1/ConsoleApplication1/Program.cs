@@ -94,13 +94,24 @@ namespace ConsoleApplication1
             #endregion
 
             #region SELF JOIN
-            cmd.CommandText = @"SELECT E.EmployeeID,E.LastName + ',' + E.FirstName AS Name,
-                            EM.FirstName AS MangerName FROM Employees E
-                            LEFT OUTER JOIN Employees EM ON E.ReportsTo = EM.EmployeeID";
-            var result8 = cmd.ExecuteReader();
-            while (result8.Read())
+//            cmd.CommandText = @"SELECT E.EmployeeID,E.LastName + ',' + E.FirstName AS Name,
+//                            EM.FirstName AS MangerName FROM Employees E
+//                            LEFT OUTER JOIN Employees EM ON E.ReportsTo = EM.EmployeeID";
+//            var result8 = cmd.ExecuteReader();
+//            while (result8.Read())
+//            {
+//                Console.WriteLine(result8[0] + " " + result8[1] + " " + result8[2]);
+//            }
+            #endregion
+
+            #region JOIN 2 TABLE (TOTAL 3)
+            cmd.CommandText = @"SELECT E.EmployeeID,E.LastName,O.OrderID,OD.Quantity FROM Employees E
+                            JOIN Orders O ON E.EmployeeID = O.EmployeeID
+                            JOIN [Order Details] OD ON O.OrderID = OD.OrderID";
+            var result9 = cmd.ExecuteReader();
+            while (result9.Read())
             {
-                Console.WriteLine(result8[0] + " " + result8[1] + " " + result8[2]);
+                Console.WriteLine(result9[0] + " " + result9[1] + " " + result9[2] + " " + result9[3]);
             }
             #endregion
             #endregion
