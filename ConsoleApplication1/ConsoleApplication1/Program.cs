@@ -15,17 +15,28 @@ namespace ConsoleApplication1
             SqlConnection conn = new SqlConnection(connectionString);
             string sql = "";
             SqlCommand cmd = new SqlCommand(sql, conn);
+            conn.Open();
 
             #region 查詢
             #region 單一資料表查詢
-            cmd.CommandText = "select * from customers";
-            conn.Open();
-            var result = cmd.ExecuteReader();
-            while(result.Read())
+            //cmd.CommandText = "select * from customers";
+            //var result1 = cmd.ExecuteReader();
+            //while (result.Read())
+            //{
+            //    Console.WriteLine(result1[0]);
+            //}
+            #endregion
+            #region 雙欄位合併
+            cmd.CommandText = @"SELECT TOP 1000 EmployeeID, 
+                CONVERT(VARCHAR,EmployeeID) + '/' 
+                + LastName + ',' + FirstName FROM Employees";
+            var result2 = cmd.ExecuteReader();
+            while(result2.Read())
             {
-                Console.WriteLine(result[0]);
+                Console.WriteLine(result2[1]);
             }
             #endregion
+
             #endregion
 
             conn.Close();
