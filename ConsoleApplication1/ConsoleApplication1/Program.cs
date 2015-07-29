@@ -73,12 +73,22 @@ namespace ConsoleApplication1
             #endregion
 
             #region RIGHT OUTER JOIN
+//            cmd.CommandText = @"SELECT * FROM Customers C 
+//                            RIGHT JOIN Orders O ON O.CustomerID = C.CustomerID";
+//            var result6 = cmd.ExecuteReader();
+//            while (result6.Read())
+//            {
+//                Console.WriteLine(result6[0] + " " + result6[1] + " " + result6[2]);
+//            }
+            #endregion
+
+            #region FULL OUTER JOIN
             cmd.CommandText = @"SELECT * FROM Customers C 
-                            RIGHT JOIN Orders O ON O.CustomerID = C.CustomerID";
-            var result6 = cmd.ExecuteReader();
-            while (result6.Read())
+                            FULL OUTER JOIN Orders O ON O.CustomerID = C.CustomerID";
+            var result7 = cmd.ExecuteReader();
+            while (result7.Read())
             {
-                Console.WriteLine(result6[0] + " " + result6[1] + " " + result6[2]);
+                Console.WriteLine(result7[0] + " " + result7[1] + " " + result7[2]);
             }
             #endregion
             #endregion
