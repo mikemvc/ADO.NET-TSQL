@@ -39,12 +39,24 @@ namespace ConsoleApplication1
             #endregion
 
             #region JOIN的簡寫
+//            cmd.CommandText = @"SELECT E.LastName + ',' + E.FirstName AS FullName,
+//                    O.OrderID, O.OrderDate 
+//                    FROM Employees E, Orders O
+//                    WHERE O.EmployeeID = E.EmployeeID";
+//            var result3 = cmd.ExecuteReader();
+//            while(result3.Read())
+//            {
+//                Console.WriteLine(result3[0] + " " + result3[1] + " " + result3[2]);
+//            }
+            #endregion
+
+            #region INNER JOIN
             cmd.CommandText = @"SELECT E.LastName + ',' + E.FirstName AS FullName,
                     O.OrderID, O.OrderDate 
-                    FROM Employees E, Orders O
-                    WHERE O.EmployeeID = E.EmployeeID";
+                    FROM Employees E
+                    JOIN Orders O ON O.EmployeeID = E.EmployeeID";
             var result3 = cmd.ExecuteReader();
-            while(result3.Read())
+            while (result3.Read())
             {
                 Console.WriteLine(result3[0] + " " + result3[1] + " " + result3[2]);
             }
