@@ -82,9 +82,10 @@ namespace ConsoleApplication1
 //            }
             #endregion
 
-            #region FULL OUTER JOIN
+            #region FULL OUTER JOIN without both sides
             cmd.CommandText = @"SELECT * FROM Customers C 
-                            FULL OUTER JOIN Orders O ON O.CustomerID = C.CustomerID";
+                            FULL OUTER JOIN Orders O ON O.CustomerID = C.CustomerID
+                            WHERE O.CustomerID IS NULL OR C.CustomerID IS NULL";
             var result7 = cmd.ExecuteReader();
             while (result7.Read())
             {
